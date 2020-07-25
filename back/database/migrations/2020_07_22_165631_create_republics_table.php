@@ -15,21 +15,21 @@ class CreateRepublicsTable extends Migration
     {
         Schema::create('republics', function (Blueprint $table) {
             $table->id();
-            $table->string('locator_name')->nullable();
+            $table->string('name');
             $table->string('street');
             $table->string('number');
-            $table->string('complement');
+            $table->string('complement')->nullable();
             $table->string('district');
             $table->string('city');
             $table->string('state');
-            $table->longText('description');
-            $table->float('price');
-            $table->integer('available_vacancies');
+            $table->string('cep');
+            $table->float('price')->unsigned();
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('locator_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
-        Schema::table('republics', function (Blueprint $table) { 
+        Schema::table('republics', function (Blueprint $table) {
             $table->foreign('locator_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

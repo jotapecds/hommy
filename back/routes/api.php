@@ -19,14 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //RepublicController
-Route::POST('createRepublic','RepublicController@createRepublic');
+Route::POST('createRepublic/{user_id}','RepublicController@createRepublic');
 Route::GET('showRepublic/{id}','RepublicController@showRepublic');
-Route::GET('listRepublic','RepublicController@listRepublic');
+Route::GET('listRepublics','RepublicController@listRepublics');
 Route::PUT('updateRepublic/{id}','RepublicController@updateRepublic');
 Route::PUT('addAnnounce/{republic_id}/{locator_id}','RepublicController@addAnnounce');
-Route::PUT('removeAnnounce/{republic_id}/{locator_id}','RepublicController@removeAnnounce');
+Route::PUT('removeAnnounce/{republic_id}','RepublicController@removeAnnounce');
 Route::DELETE('deleteRepublic/{id}','RepublicController@deleteRepublic');
 
-//UserController0
+//UserController
 Route::POST('createUser','UserController@createUser');
+Route::GET('showUser/{id}', 'UserController@showUser');
+Route::GET('listUsers','UserController@listUsers');
+Route::PUT('updateUser/{id}', 'UserController@updateUser');
 
