@@ -8,10 +8,7 @@ use App\User;
 
 class RepublicController extends Controller
 {
-    public function createRepublic(Request $request, $user_id){
-        $user = User::findOrFail($user_id);
-        if(!$user->locator)
-            return response()->json(['Não foi possível anúnciar república, o usuário não é um locador.']);
+    public function createRepublic(Request $request){
 
         $republic = new Republic;
         $republic->name = $request->name;
@@ -24,7 +21,6 @@ class RepublicController extends Controller
         $republic->cep = $request->cep;
         $republic->price = $request->price;
         $republic->description = $request->description;
-        $republic->locator_id = $user_id;
 
         $republic->save();
         return response()->json($republic);

@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //RepublicController
-Route::POST('createRepublic/{user_id}','RepublicController@createRepublic');
+Route::POST('createRepublic','RepublicController@createRepublic');
 Route::GET('showRepublic/{id}','RepublicController@showRepublic');
 Route::GET('listRepublics','RepublicController@listRepublics');
 Route::PUT('updateRepublic/{id}','RepublicController@updateRepublic');
