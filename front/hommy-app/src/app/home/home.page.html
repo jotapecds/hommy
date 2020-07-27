@@ -25,61 +25,19 @@
   <h4 class="subtitle"> Mi republica es tu republica </h4>
 
   <ion-item id="search">
-    <ion-searchbar placeholder="Buscar" clearImput></ion-searchbar>
+    <ion-searchbar placeholder="Buscar" clearInput></ion-searchbar>
   </ion-item>
 
-  <ion-card color="primary">
-    <img src="../../assets/img/residencia2.jpg" alt=""/>
+  <ion-card color="primary" *ngFor="let republica of republicas" >
+    <img [src]=republica.img alt=""/>
     <ion-card-header>
-      <ion-card-title>República Vila Nova</ion-card-title>
+      <ion-card-title>{{republica.nome}}</ion-card-title>
       <ion-card-subtitle>
-        <ion-icon name="location-outline"></ion-icon>Ilha do governador, Rio de janeiro 
+        <ion-icon name="location-outline"></ion-icon>{{republica.endereco}} 
       </ion-card-subtitle>
+      <h2>R${{republica.preco}}</h2>
     </ion-card-header>
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-    <ion-button color="success">
-      <ion-icon name="information-circle-outline"></ion-icon>Ver mais
-    </ion-button>
-    <ion-button color="danger">
-      <ion-icon name="heart-outline"></ion-icon>Favoritar
-    </ion-button>
-  </ion-card>
-
-  <ion-card color="primary">
-    <img src="../../assets/img/residencia3.jpg" alt=""/>
-    <ion-card-header>
-      <ion-card-title>República Botafogo</ion-card-title>
-      <ion-card-subtitle>
-        <ion-icon name="location-outline"></ion-icon>Botafogo, Rio de janeiro 
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-    <ion-button color="success">
-      <ion-icon name="information-circle-outline"></ion-icon>Ver mais
-    </ion-button>
-    <ion-button color="danger">
-      <ion-icon name="heart-outline"></ion-icon>Favoritar
-    </ion-button>
-  </ion-card>
-
-  <ion-card color="primary">
-    <img src="../../assets/img/residencia2.jpg" alt=""/>
-    <ion-card-header>
-      <ion-card-title>República Atlantic</ion-card-title>
-      <ion-card-subtitle>
-        <ion-icon name="location-outline"></ion-icon>Copacabana, Rio de janeiro 
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
+    <ion-card-content>{{republica.descricao}}</ion-card-content>
     <ion-button color="success">
       <ion-icon name="information-circle-outline"></ion-icon>Ver mais
     </ion-button>
