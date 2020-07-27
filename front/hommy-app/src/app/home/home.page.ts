@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
         preco: '490,99'
       },
       {
-        img: '../../assets/img/residencia1.jpg',
+        img: '../../assets/img/residencia2.jpg',
         nome: 'República 3',
         endereco: 'rua creide, n 277 - Urca, Rio de Janeiro',
         descricao: 'a republica mais antiga da Urca agora está a sua disposção',
