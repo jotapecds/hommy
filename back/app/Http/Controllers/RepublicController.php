@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Republic;
 use App\User;
+use App\Http\Requests\RepublicRequest;
 
 class RepublicController extends Controller
 {
-    public function createRepublic(Request $request){
+    public function createRepublic(RepublicRequest $request){
 
         $republic = new Republic;
         $republic->name = $request->name;

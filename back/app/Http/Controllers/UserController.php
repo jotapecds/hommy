@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request){
+    public function createUser(UserRequest $request){
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->locator = $request->locator;
+        $user->tel_num = $request->tel_num;
+        $user->birth_date = $request->birth_date;
+        $user->is_locator = $request->is_locator;
         $user->save();
         return response()->json($user);
     }
