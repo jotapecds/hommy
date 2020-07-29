@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
             'email' => 'required|email|unique:Users,email',
             'password' => 'required|min:8',
             'tel_num' => 'required|celular_com_ddd',
-            'birth_date' => 'required|date_format:D/M/Y',
+            'birth_date' => 'required',
             'is_locator' => 'boolean',
         ];
     }

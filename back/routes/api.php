@@ -26,10 +26,27 @@ Route::PUT('updateRepublic/{id}','RepublicController@updateRepublic');
 Route::PUT('addAnnounce/{republic_id}/{locator_id}','RepublicController@addAnnounce');
 Route::PUT('removeAnnounce/{republic_id}','RepublicController@removeAnnounce');
 Route::DELETE('deleteRepublic/{id}','RepublicController@deleteRepublic');
+Route::GET('listLocatarios/{id}', 'RepublicController@listLocatarios');
+Route::GET('showLocador/{id}', 'RepublicController@showLocador');
 
 //UserController
 Route::POST('createUser','UserController@createUser');
 Route::GET('showUser/{id}', 'UserController@showUser');
 Route::GET('listUsers','UserController@listUsers');
 Route::PUT('updateUser/{id}', 'UserController@updateUser');
+Route::POST('alugar/{user_id}/{republic_id}', 'UserController@alugar');
+Route::POST('anunciar/{user_id}/{republic_id}', 'UserController@anunciar');
+Route::PUT('favoritar/{user_id}/{republic_id}', 'UserController@favoritar');
+Route::PUT('desfavoritar/{user_id}/{republic_id}', 'UserController@desfavoritar');
+
+//Passport routes
+
+Route::POST('register', 'API\PassportController@register');
+Route::POST('login', 'API\PassportController@login');
+
+Route::GROUP(['middleware'=>'auth:api'], function (){
+    Route::GET('logout', 'API\PassportController@logout');
+    Route::POST('getDetails', 'API\PassportController@getDetails');
+});
+
 

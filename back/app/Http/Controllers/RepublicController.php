@@ -10,20 +10,8 @@ use App\Http\Requests\RepublicRequest;
 class RepublicController extends Controller
 {
     public function createRepublic(RepublicRequest $request){
-
         $republic = new Republic;
-        $republic->name = $request->name;
-        $republic->street = $request->street;
-        $republic->number = $request->number;
-        $republic->complement = $request->complement;
-        $republic->district = $request->district;
-        $republic->city = $request->city;
-        $republic->state = $request->state;
-        $republic->cep = $request->cep;
-        $republic->price = $request->price;
-        $republic->description = $request->description;
-
-        $republic->save();
+        $republic->createRepublic($request);
         return response()->json($republic);
     }
 
@@ -93,5 +81,16 @@ class RepublicController extends Controller
         $republic->locator_id = NULL;
         $republic->save();
         return response()->json($republic);
+    }
+
+    public function listLocatarios($id){
+        $republic = Republic::findOrFail($id);
+        $locatarios = $republic->userLocatario->get();
+        return response()->json($locatarios);
+    }
+
+    public function showLocador($id){
+        $republic = Republic::findOrFail($id);
+        return response()->json($republic->user);
     }
 }

@@ -2,15 +2,15 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class RepublicTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(UserTabelSeeder::class);
+        factory (App\Republic::class,5)->create();
     }
 }
