@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Republic;
 use App\User;
 use App\Http\Requests\RepublicRequest;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RepublicController extends Controller
 {
@@ -92,5 +93,21 @@ class RepublicController extends Controller
     public function showLocador($id){
         $republic = Republic::findOrFail($id);
         return response()->json($republic->user);
+    }
+
+    public function searchRepublic(Request $request) {
+        $query = Republic::query();
+        if ($request->price)
+            $query->where('price','<=',$request->price);
+        if ($request->city)
+            $query->where('city','LIKE','%'.$request->city.'%');
+
+        $search = $query->get();
+        return response()->json($search);
+    }
+
+    public function deletedRepublics(){
+        $result = Republic::onlyTrashed()->get();
+        return response()->json($result);
     }
 }

@@ -28,6 +28,9 @@ Route::PUT('removeAnnounce/{republic_id}','RepublicController@removeAnnounce');
 Route::DELETE('deleteRepublic/{id}','RepublicController@deleteRepublic');
 Route::GET('listLocatarios/{id}', 'RepublicController@listLocatarios');
 Route::GET('showLocador/{id}', 'RepublicController@showLocador');
+Route::GET('searchRepublic', 'RepublicController@searchRepublic');
+Route::GET('deletedRepublics', 'RepublicController@deletedRepublics');
+
 
 //UserController
 Route::POST('createUser','UserController@createUser');

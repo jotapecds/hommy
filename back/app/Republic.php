@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\RepublicRequest;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use User;
 
 class Republic extends Model
 {
+    use SoftDeletes;
+
     public function userLocatario(){
         return $this->hasOne('App\User');
     }
