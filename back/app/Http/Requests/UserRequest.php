@@ -30,15 +30,21 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:Users,email',
             'password' => 'required|min:8',
-            'tel_num' => 'required|celular_com_ddd',
-            'birth_date' => 'required',
+            'tel_num' => 'nullable|numeric|min:9',
+            'birth_date' => 'required|date_format:d/m/Y',
             'is_locator' => 'boolean',
         ];
     }
 
     public function messages() {
         return [
-            'name.required'=>'Insira o nome da sua república',
+            'name.required'=>'Insira o seu nome',
+            'email.required'=>'Insira o seu email',
+            'email.email'=>'Formato do email inválido',
+            'email.unique'=>'Email já cadastrado',
+            'password.required'=>'Insira sua senha',
+            'password.min'=>'Insira um minimo de caracteres na sua senha',
+            'birth_date.required'=>'Insira sua data de nascimento'
         ];
     }
 
@@ -46,4 +52,5 @@ class UserRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json($validator->errors(),422));
     }
+
 }

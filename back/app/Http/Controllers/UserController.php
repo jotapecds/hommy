@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\User;
@@ -9,12 +10,24 @@ use App\Republic;
 
 class UserController extends Controller
 {
-    /*public function createUser(UserRequest $request){
-        $user = new User;
-        $user->createUser($user);
-        return response()->json($user);
-    }*/
     public function createUser(UserRequest $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:Users,email',
+            'password' => 'required|min:8',
+            'tel_num' => 'nullable|numeric|min:9',
+            'birth_date' => 'required|date_format:d/m/Y',
+            'is_locator' => 'boolean'
+        ]);
+
+        if($validator->fails())
+            return response()->json($validator->errors());
+
+        $user = new User;
+        $user->createUser($request);
+        return response()->json($user);
+    }
+    /*public function createUser(UserRequest $request){
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -23,7 +36,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->is_locator = $request->is_locator;
         return response()->json($user);
-    }
+    }*/
 
     public function showUser($id){
         $user = User::findOrFail($id);
@@ -40,7 +53,6 @@ class UserController extends Controller
 
         if($request->name)
             $user->name = $request->name;
-
 
         if($request->locator)
             $user->locator = $request->locator;
