@@ -27,16 +27,11 @@ class UserController extends Controller
         $user->createUser($request);
         return response()->json($user);
     }
-    /*public function createUser(UserRequest $request){
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->tel_num = $request->tel_num;
-        $user->birth_date = $request->birth_date;
-        $user->is_locator = $request->is_locator;
+    public function updateUser(UserRequest $request, $id){
+        $user = User::findOrFail($id);
+        $user->updateUser($request);
         return response()->json($user);
-    }*/
+    }
 
     public function showUser($id){
         $user = User::findOrFail($id);
@@ -46,20 +41,6 @@ class UserController extends Controller
     public function listUsers(){
         $user = User::all();
         return response()->json([$user]);
-    }
-
-    public function updateUser(Request $request, $id){
-        $user = User::findOrFail($id);
-
-        if($request->name)
-            $user->name = $request->name;
-
-        if($request->locator)
-            $user->locator = $request->locator;
-        // Um usuário locatário pode virar locador, mas a operação é irreversível
-
-        $user->save();
-        return response()->json($user);
     }
 
     public function alugar($user_id, $republic_id){

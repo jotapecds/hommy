@@ -68,4 +68,14 @@ class User extends Authenticatable
         $this->is_locator = $request->is_locator;
         $this->save();
     }
+
+    public function updateUser(UserRequest $request){
+        if($request->name)
+            $this->name = $request->name;
+        if($request->locator)
+            $this->locator = $request->locator;
+        // Um usuário locatário pode virar locador, mas a operação é irreversível
+
+        $this->save();
+    }
 }

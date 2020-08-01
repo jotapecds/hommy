@@ -17,6 +17,12 @@ class RepublicController extends Controller
         return response()->json($republic);
     }
 
+    public function updateRepublic(RepublicRequest $request, $id){
+        $republic = Republic::findOrFail($id);
+        $republic->updateRepublic($request);
+        return response()->json($republic);
+    }
+
     public function showRepublic($id){
         $republic = Republic::findOrFail($id);
         return response()->json(new RepublicResource($republic));
@@ -27,47 +33,10 @@ class RepublicController extends Controller
         return response()->json([$republic]);
     }
 
-    public function updateRepublic(Request $request, $id){
-        $republic = Republic::findOrFail($id);
-
-        if($request->name)
-            $republic->name = $request->name;
-
-        if($request->street)
-            $republic->street = $request->street;
-
-        if($request->number)
-            $republic->number = $request->number;
-
-        if($request->complement)
-            $republic->complement = $request->complement;
-
-        if($request->district)
-            $republic->district = $request->district;
-
-        if($request->city)
-            $republic->city = $request->city;
-
-        if($request->state)
-            $republic->state = $request->state;
-
-        if($request->cep)
-            $republic->cep = $request->cep;
-
-        if($request->price)
-            $republic->price = $request->price;
-
-        if($request->description)
-            $republic->description = $request->description;
-
-        $republic->save();
-        return response()->json($republic);
-    }
-
     public function deleteRepublic($id){
         $republic = Republic::findOrFail($id);
         Republic::destroy($id);
-        return response()->json(['Republica deletada']);
+        return response()->json(['Republica '. $republic->name .' deletada']);
     }
 
     public function addAnnounce($republic_id, $user_id){

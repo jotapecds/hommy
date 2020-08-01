@@ -37,6 +37,31 @@ class Republic extends Model
         $this->save();
     }
 
+    public function updateRepublic(RepublicRequest $request){
+        if($request->name)
+            $this->name = $request->name;
+        if($request->street)
+            $this->street = $request->street;
+        if($request->number)
+            $this->number = $request->number;
+        if($request->complement)
+            $this->complement = $request->complement;
+        if($request->district)
+            $this->district = $request->district;
+        if($request->city)
+            $this->city = $request->city;
+        if($request->state)
+            $this->state = $request->state;
+        if($request->cep)
+            $this->cep = $request->cep;
+        if($request->price)
+            $this->price = $request->price;
+        if($request->description)
+            $this->description = $request->description;
+
+        $this->save();
+    }
+
     public function anunciar($user_id){
         $user = User::findOrFail($user_id);
         $this->user_id = $user_id;

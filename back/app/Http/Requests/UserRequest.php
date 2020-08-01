@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:Users,email',
             'password' => 'required|min:8',
-            'tel_num' => 'nullable|numeric|min:9',
+            'tel_num' => 'required|telefone_com_ddd',
             'birth_date' => 'required|date_format:d/m/Y',
             'is_locator' => 'boolean',
         ];

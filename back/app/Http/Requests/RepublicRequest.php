@@ -47,7 +47,7 @@ class RepublicRequest extends FormRequest
             'district.required'=>'Insira o bairro',
             'city.required'=>'Insira a cidade',
             'state.required'=>'Insira o estado',
-            'cep.required'=>'Insira um cep',
+            'cep.required'=>'Insira um cep porfavor',
             'price.required'=>'Insira um nome',
             'price.numeric'=>'Insira um valor válido',
         ];
