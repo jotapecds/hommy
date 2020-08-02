@@ -11,7 +11,7 @@ class UserTabelSeeder extends Seeder
      */
     public function run()
     {
-       factory (App\User::class,1000)->create()->each(function ($user) {
+       factory (App\User::class,20)->create()->each(function ($user) {
         $republic = factory(App\Republic::class)->make();
         $user->republic()->save($republic);
         $republic->userFavoritas()->attach($user);
