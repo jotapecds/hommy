@@ -68,13 +68,25 @@ class RepublicController extends Controller
 
     public function searchRepublic(Request $request) {
         $query = Republic::query();
+    // Filtrando repúblicas com preço até o valor digitado
         if ($request->price)
             $query->where('price','<=',$request->price);
+    // Filtrando repúblicas localizadas na cidade procurada
         if ($request->city)
             $query->where('city','LIKE','%'.$request->city.'%');
+    // Filtrando repúblicas com residentes
+        if ($request->locatarios)
+            $query->has('userLocatario', '>=', 1);
 
-        $search = $query->get();
-        return response()->json($search);
+    // Paginação e resource
+        $search = $query->paginate(3);
+        $republic = RepublicResource::collection($search);
+
+        return response()->json([
+            'data' => $republic,
+            'current_page' => $search->currentPage(),
+            'last_page' => $search->lastPage()
+        ]);
     }
 
     public function deletedRepublics(){

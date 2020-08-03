@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Requests\UserRequest;
 use Laravel\Passport\HasApiTokens;
-use Republic;
+use App\Republic;
 
 class User extends Authenticatable
 {
