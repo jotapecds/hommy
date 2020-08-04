@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Requests\RepublicRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Resources\Republics as RepublicResource;
+use Illuminate\Support\Facades\Storage;
 
 class RepublicController extends Controller
 {
@@ -33,10 +34,10 @@ class RepublicController extends Controller
         return response()->json([$republic]);
     }
 
-    public function deleteRepublic($id){
-        $republic = Republic::findOrFail($id);
-        Republic::destroy($id);
-        return response()->json(['Republica '. $republic->name .' deletada']);
+    public function deleteRepublic2($id){
+        $republic = Republic::find($id);
+        $republic->deleteThis();
+        return response()->json(['Republica deletada']);
     }
 
     public function addAnnounce($republic_id, $user_id){

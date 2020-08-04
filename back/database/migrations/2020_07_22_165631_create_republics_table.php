@@ -25,13 +25,14 @@ class CreateRepublicsTable extends Migration
             $table->string('cep');
             $table->float('price')->unsigned();
             $table->longText('description')->nullable();
+            $table->string('photo')->nullable();
             $table->unsignedBigInteger('user_id')->unsigned()->nullable();
             $table->timestamps();
         });
 
         Schema::table('republics', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->softDeletes();
+            //$table->softDeletes();
         });
     }
 

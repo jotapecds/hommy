@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\RepublicRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use User;
 
 class Republic extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public function userLocatario(){
         return $this->hasOne('App\User');
@@ -34,6 +35,20 @@ class Republic extends Model
         $this->cep = $request->cep;
         $this->price = $request->price;
         $this->description = $request->description;
+
+        if (!Storage::exists('localPhotos/'))
+            Storage::makeDirectory('localPhotos/', 0755, true);
+
+        /*$file = $request->file('photo');
+        $filename=rand().'.'.$file->getClientOriginalExtension();
+        $path = $file->storeAs('localphotos', $filename);*/
+
+        $image=base64_decode($request->photo);
+        $filename=uniqid();
+        $path=storage_path('/app/localPhotos/'.$filename);
+        file_put_contents($path, $image);
+        $this->photo=$path;
+
         $this->save();
     }
 
@@ -60,6 +75,13 @@ class Republic extends Model
             $this->description = $request->description;
 
         $this->save();
+    }
+
+    public function deleteThis(){
+        if($this->photo;){}
+            //unlink($photo);
+        $this->delete();
+        //Republic::destroy($id);
     }
 
     public function anunciar($user_id){
