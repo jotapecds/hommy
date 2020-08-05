@@ -9,6 +9,7 @@ use App\Http\Requests\RepublicRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Http\Resources\Republics as RepublicResource;
 use Illuminate\Support\Facades\Storage;
+use DB;
 
 class RepublicController extends Controller
 {
@@ -36,7 +37,12 @@ class RepublicController extends Controller
 
     public function deleteRepublic2($id){
         $republic = Republic::find($id);
+
+        //return response()->json($republic);
+        //$photo = $republic->photo;
+
         $republic->deleteThis();
+        $nr_afr = DB::table('republics')->where('id', $republic->id)->delete();
         return response()->json(['Republica deletada']);
     }
 

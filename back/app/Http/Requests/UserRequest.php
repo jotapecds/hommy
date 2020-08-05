@@ -28,9 +28,9 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:Users,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'tel_num' => 'required|telefone_com_ddd',
+            'tel_num' => 'nullable|numeric|min:9',
             'birth_date' => 'required|date_format:d/m/Y',
             'is_locator' => 'boolean',
         ];

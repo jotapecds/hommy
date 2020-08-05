@@ -13,7 +13,7 @@ class UserController extends Controller
     public function createUser(UserRequest $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email|unique:Users,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
             'tel_num' => 'nullable|numeric|min:9',
             'birth_date' => 'required|date_format:d/m/Y',

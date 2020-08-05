@@ -7,6 +7,7 @@ use App\Http\Requests\RepublicRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use User;
+use DB;
 
 class Republic extends Model
 {
@@ -36,19 +37,17 @@ class Republic extends Model
         $this->price = $request->price;
         $this->description = $request->description;
 
-        if (!Storage::exists('localPhotos/'))
-            Storage::makeDirectory('localPhotos/', 0755, true);
+        $this->save();
 
-        /*$file = $request->file('photo');
-        $filename=rand().'.'.$file->getClientOriginalExtension();
-        $path = $file->storeAs('localphotos', $filename);*/
+        if($request->photo){
+            if(!Storage::exists('localPhotos/'))
+              Storage::makeDirectory('localPhotos/',0775,true);
 
-        $image=base64_decode($request->photo);
-        $filename=uniqid();
-        $path=storage_path('/app/localPhotos/'.$filename);
-        file_put_contents($path, $image);
-        $this->photo=$path;
-
+            $file = $request->file('photo');
+            $filename = $this->id.'.'.$file->getClientOriginalExtension();
+            $path = $file->storeAs('localPhotos', $filename);
+            $this->photo = $path;
+        }
         $this->save();
     }
 
@@ -78,10 +77,10 @@ class Republic extends Model
     }
 
     public function deleteThis(){
-        if($this->photo;){}
-            //unlink($photo);
-        $this->delete();
-        //Republic::destroy($id);
+        if($this->photo)
+            Storage::delete($this->photo);
+
+        //Republic::destroy($this->id);
     }
 
     public function anunciar($user_id){

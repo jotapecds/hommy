@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use App\Notifications\UserRegister;
 use App\User;
 use Auth;
 use DB;
@@ -12,8 +13,9 @@ use DB;
 class PassportController extends Controller
 {
     public function register(UserRequest $request){
-        $newuser = new User;
+        $newuser = new User();
         $newuser->createUser($request);
+        $newuser->notify(new UserRegister());
         $success['token']=$newuser->createToken('MyApp')->accessToken;
         return response()->json(['success'=>$success, 'user'=>$newuser], 200);
     }

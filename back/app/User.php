@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Requests\UserRequest;
 use Laravel\Passport\HasApiTokens;
+
 use App\Republic;
 
 class User extends Authenticatable
@@ -66,6 +67,7 @@ class User extends Authenticatable
         $this->tel_num = $request->tel_num;
         $this->birth_date = $request->birth_date;
         $this->is_locator = $request->is_locator;
+
         $this->save();
     }
 
