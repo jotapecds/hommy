@@ -25,7 +25,7 @@ Route::GET('listRepublics','RepublicController@listRepublics');
 Route::PUT('updateRepublic/{id}','RepublicController@updateRepublic');
 Route::PUT('addAnnounce/{republic_id}/{locator_id}','RepublicController@addAnnounce');
 Route::PUT('removeAnnounce/{republic_id}','RepublicController@removeAnnounce');
-Route::PUT('deleteRepublic2/{id}','RepublicController@deleteRepublic2');//->middleware('verify.user');
+Route::PUT('deleteRepublic/{id}','RepublicController@deleteRepublic');//->middleware('verify.user');
 Route::GET('listLocatarios/{id}', 'RepublicController@listLocatarios');
 Route::GET('showLocador/{id}', 'RepublicController@showLocador');
 Route::GET('searchRepublic', 'RepublicController@searchRepublic');

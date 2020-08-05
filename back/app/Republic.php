@@ -76,11 +76,12 @@ class Republic extends Model
         $this->save();
     }
 
-    public function deleteThis(){
+    public function deleteRepublic(){
         if($this->photo)
             Storage::delete($this->photo);
 
-        //Republic::destroy($this->id);
+        //$nr_afr = DB::table('republics')->where('id', $republic->id)->delete();
+        Republic::destroy($this->id);
     }
 
     public function anunciar($user_id){

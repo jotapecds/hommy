@@ -35,14 +35,13 @@ class RepublicController extends Controller
         return response()->json([$republic]);
     }
 
-    public function deleteRepublic2($id){
+    public function deleteRepublic($id){
         $republic = Republic::find($id);
 
         //return response()->json($republic);
         //$photo = $republic->photo;
 
-        $republic->deleteThis();
-        $nr_afr = DB::table('republics')->where('id', $republic->id)->delete();
+        $republic->deleteRepublic();
         return response()->json(['Republica deletada']);
     }
 
