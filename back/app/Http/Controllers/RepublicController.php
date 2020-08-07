@@ -38,10 +38,10 @@ class RepublicController extends Controller
     public function deleteRepublic($id){
         $republic = Republic::find($id);
 
-        //return response()->json($republic);
-        //$photo = $republic->photo;
+        if($republic->photo)
+            Storage::delete($republic->photo);
 
-        $republic->deleteRepublic();
+        Republic::destroy($republic->id);
         return response()->json(['Republica deletada']);
     }
 

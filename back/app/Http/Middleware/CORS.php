@@ -20,6 +20,6 @@ class CORS
         $resposta->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $resposta->header('Access-Control-Allow-Headers', 'Authorization, Content-Type');
 
-        return $next($request);
+        return $resposta;
     }
 }

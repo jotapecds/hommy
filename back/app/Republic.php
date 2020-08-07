@@ -11,7 +11,7 @@ use DB;
 
 class Republic extends Model
 {
-    //use SoftDeletes;
+    use SoftDeletes;
 
     public function userLocatario(){
         return $this->hasOne('App\User');
@@ -80,7 +80,6 @@ class Republic extends Model
         if($this->photo)
             Storage::delete($this->photo);
 
-        //$nr_afr = DB::table('republics')->where('id', $republic->id)->delete();
         Republic::destroy($this->id);
     }
 

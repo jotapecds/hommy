@@ -45,9 +45,9 @@ class UserRegister extends Notification
 
         return (new MailMessage)
                     ->greeting('Olá, '.$user->name.'!')
-                    ->line('Você acabou de se cadastrar no Hommy')
+                    ->line('Você acaba de se cadastrar no Hommy')
                     ->action('Clique aqui para confirmar', $url)
-                    ->line('Se você não usou este email para se cadastrar no Hommy, CLIQUE AQUI!')
+                    ->line('Se você não usou este endereço de email para se cadastrar no Hommy, CLIQUE AQUI!')
                     ->line('Obrigado por usar o Hommy!');
     }
 
